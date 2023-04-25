@@ -21,7 +21,7 @@ generatorHandler({
 		const models = options.dmmf.datamodel.models
 
 		const { schemaPath } = options
-		const outputPath = options.generator.output!.value
+		const outputPath = options.generator.output!.value || ''
 		const clientPath = options.otherGenerators.find(
 			(each) => each.provider.value === 'prisma-client-js'
 		)!.output!.value!

@@ -1,6 +1,6 @@
 import glob from 'fast-glob'
 import execa from 'execa'
-import { getDMMF, getConfig } from '@prisma/sdk'
+import { getDMMF, getConfig } from '@prisma/internals'
 import { readFile } from 'fs-extra'
 import path from 'path'
 import { Project } from 'ts-morph'
@@ -34,8 +34,8 @@ const ftForDir = (dir: string) => async () => {
 		(generator) => generator.provider.value === 'prisma-client-js'
 	)!
 
-	const outputPath = path.resolve(path.dirname(schemaFile), generator.output!.value)
-	const clientPath = path.resolve(path.dirname(schemaFile), prismaClient.output!.value)
+	const outputPath = path.resolve(path.dirname(schemaFile), generator.output!.value || '')
+	const clientPath = path.resolve(path.dirname(schemaFile), prismaClient.output!.value || '')
 
 	const prismaOptions: PrismaOptions = {
 		clientPath,
